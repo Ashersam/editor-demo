@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { createBasicUsfmEditor, withChapterPaging, withChapterSelection, withToolbar } from "usfm-editor"
-import './App.css';
+import style from "./style-override.lazy.css"
 import { DemoToolbarSpecs } from './DemoToolbarSpecs'
 
 const loading = String.raw`
@@ -14,6 +14,7 @@ const loading = String.raw`
 function App() {
   const [sourceString, setSourceString] = useState(loading);
   const [output, setOutput] = useState()
+  const [id, setId] = useState()
 
   const CustomEditor = useMemo(
     () => withToolbar(withChapterSelection(withChapterPaging(createBasicUsfmEditor()))),
@@ -33,6 +34,7 @@ function App() {
   
   const onIdentificationChangeHandle = (id) => {
     console.log(id)
+    setId(id)
   }
   
   return (
